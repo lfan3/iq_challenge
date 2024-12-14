@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Define your models here
+model Question {
+  id    Int     @id @default(autoincrement())
+  key   Int @unique
+  answer String
+  answers   Answer[] // Add this field to define the opposite relation
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  password String
+  email         String   @unique
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  questions String?
+  sessions  Session[]
+  answers   Answer[] // Add this field to define the opposite relation
+}
+
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  token     String   @unique
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Answer {
+  id        Int      @id @default(autoincrement())
+  userId  Int
+  questionId Int
+  content String
+  user User @relation(fields: [userId], references: [id])
+  question Question @relation(fields: [questionId], references: [id])
+}

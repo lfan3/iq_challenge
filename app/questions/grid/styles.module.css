@@ -1,0 +1,35 @@
+.grid_container {
+    display: grid;
+    gap: 0; /* 消除单元格之间的间距 */
+    width: 460px; /* 你可以根据需要调整宽度 */
+    height: 460px; /* 你可以根据需要调整高度 */
+    /* border: 2px solid green; 整个网格的外边框 */
+    border-width: 2px;
+    border-style: solid;
+}
+
+.grid_15 {
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+}
+
+.grid_16{
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+}
+
+.grid_cell {
+  /* background-color: #edf2fb; */
+  /* background-color:  rgb(245 245 245); */
+  border-width: 1px;
+  border-style: solid;
+  /* border: 1px solid green; */
+  box-sizing: border-box; /* 确保边框不会增加单元格的大小 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+
+

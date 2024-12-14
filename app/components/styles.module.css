@@ -1,0 +1,63 @@
+.bomb {
+    position: relative;
+    width: 100px; /* 地雷的宽度 */
+    height: 150px; /* 地雷的高度 */
+    margin: 50px auto; /* 垂直居中 */
+    /* background-color: red; */
+}    
+/* animation: explode 5s forwards; 应用爆炸动画 */
+
+.body{
+    position: relative;
+  width: 100%;
+  height: 100%
+}
+
+.fuse{
+    position: absolute;
+    top: -20px; /* 位于炸弹顶部之上 */
+    left: 50%;
+    width: 4px;
+    height: 20px;
+    background: #000;
+    transform: translateX(-50%);
+}
+
+.top, .bottom{
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background: #8B4513; /* 棕色 */
+    border-radius: 50% 50% 0 0; /* 上半圆 */
+}
+
+.middle{
+    position: absolute;
+    border-radius: 50%;
+    background-color: #000;
+    height: 90px;
+    width: 100%;
+    top:30px;
+}
+
+.bottom{
+    bottom: 0;
+    border-radius: 50% / 0 0 50% 50%; /* 下半圆 */
+}
+@keyframes explode {
+    0% {
+      transform: scale(1); /* 初始大小 */
+      opacity: 1; /* 初始不透明度 */
+      background: #333; /* 初始颜色 */
+    }
+    50% {
+      transform: scale(3); /* 爆炸时扩大 */
+      opacity: 0.8; /* 爆炸时稍微降低不透明度 */
+      background: red; /* 爆炸时变为红色 */
+    }
+    100% {
+      transform: scale(10); /* 爆炸结束时极大扩大 */
+      opacity: 0; /* 最后完全透明 */
+      background: transparent; /* 最后背景透明 */
+    }
+  }

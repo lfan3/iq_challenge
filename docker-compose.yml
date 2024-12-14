@@ -1,0 +1,16 @@
+version: '1.0'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/mind_game
+      - /mind_game/node_modules
+      - db_data:/mind_game/data.db
+    environment:
+      - DATABASE_URL=file:./data.db
+
+volumes:
+  db_data:

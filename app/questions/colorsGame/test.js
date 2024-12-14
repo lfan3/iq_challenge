@@ -1,0 +1,5 @@
+const regex = RegExp("[a-z]")
+const m = regex.test('a')
+const c = regex.test('?')
+const d = /[a-z]/.test('dd')
+console.log(m,c,d)

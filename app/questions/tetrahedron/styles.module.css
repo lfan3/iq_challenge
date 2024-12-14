@@ -1,0 +1,24 @@
+
+.tetrahedron_container .tetrahedron:nth-child(2){
+    right: 60px;
+    top:20px
+}
+
+.tetrahedron_container .tetrahedron:nth-child(3){
+    left:  calc(50% - 80px);
+    top: 36%
+}
+
+.tetrahedron_container .tetrahedron:nth-child(4){
+    left: 60px;
+    top: 68%
+}
+
+.tetrahedron{
+    position: absolute;
+}
+
+
+
+
+
