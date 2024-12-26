@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ITriangleData, IQuestionContentProps } from "../declaration"
-import colorPalettes from "@/app/utils/colors";
 import { useGlobalKeyPress } from '@/app/utils/hooks';
 import {getAnswerService} from "@/app/services";
 import { useData } from '@/app/context/DataStateContext';
@@ -19,6 +17,8 @@ const ColorGameGrid: React.FC = ({ data, type, color = "red", selectedQ, explosi
 
     useEffect(() => {
         setInputValue("")
+        explosionTrigger(false)
+
         const refillAnswer = async()=>{
             const response = await getAnswerService(selectedQ)
             let {answer, success} = response;
@@ -52,6 +52,9 @@ const ColorGameGrid: React.FC = ({ data, type, color = "red", selectedQ, explosi
     
                 const timer = setTimeout(() => {
                     setInputValue("")
+                    if(+selectedQ < 45){
+                        updateSelectedQ(selectedQ+1)
+                    }
                     clearTimeout(timer)
                 }, 2200)
             } else {

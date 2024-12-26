@@ -20,7 +20,6 @@ export default async (
             answer: true,
         },
     })
-    console.log("an", answer)
     return res.status(200).json(answer)
 }
 

@@ -59,7 +59,7 @@ const questionTxts = [
 export default function Question({ selectedQ,updateSelectedQ,correctionArr}: IQuestionProps) {
     const { width = 500, height = 120 } = useWindowSize()
     const [explosion, setExplosion] = useState(false)
-    const {finish,setfinish} = useData()
+    const {finish,updateFinish} = useData()
 
 
     const explosionTrigger = (val: boolean) => {
@@ -104,7 +104,7 @@ export default function Question({ selectedQ,updateSelectedQ,correctionArr}: IQu
     }
     return (
         <>
-            <Dialog open={finish} onClose={() => setfinish(false)} className="relative z-50">
+            <Dialog open={finish} onClose={() => updateFinish(false)} className="relative z-50">
             <DialogBackdrop className="fixed inset-0 bg-black/30" />
             <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
               <DialogPanel className="max-w-lg space-y-4 border bg-white px-10 py-7 rounded-lg">
@@ -118,7 +118,7 @@ export default function Question({ selectedQ,updateSelectedQ,correctionArr}: IQu
                 </Description>
                 <p>You have successfully completed the game.</p>
                 <div className="flex justify-end">
-                  <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => setfinish(false)}>CLOSE</button>
+                  <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => updateFinish(false)}>CLOSE</button>
                 </div>
               </DialogPanel>
             </div>
@@ -127,7 +127,7 @@ export default function Question({ selectedQ,updateSelectedQ,correctionArr}: IQu
             <div>
                 {
                     explosion && (
-                        <Confetti width={width * 2} height={height} run={explosion} numberOfPieces={1000} recycle={false} initialVelocityY={25} initialVelocityX={30} confettiSource={{ x: width, y: height }} gravity={0.1} onConfettiComplete={handleCompletion} />
+                        <Confetti width={width * 2} height={height} run={explosion} numberOfPieces={1000} recycle={false} initialVelocityY={35} initialVelocityX={40} confettiSource={{ x: width, y: height }} gravity={0.1} onConfettiComplete={handleCompletion} />
                     )
                 }
             </div>

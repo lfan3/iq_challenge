@@ -3,14 +3,14 @@ import { getAnswerService,  } from '@/app/services';
 import {showExplaination} from "@/app/api/calculate";
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
-import { Info } from '../components/Info';
+import { Info } from './Info';
 
 interface AnswersProps {
     selectedQ: number;
 }
   
 const Answers: React.FC<AnswersProps> = ({ selectedQ }): JSX.Element => {
-    const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState("? Thinking ...");
     const [showInfo, setShowInfo] = useState(false);
 
     useEffect(()=>{
@@ -26,11 +26,14 @@ const Answers: React.FC<AnswersProps> = ({ selectedQ }): JSX.Element => {
     },[selectedQ])
 
     const showAnswer = () => {
+        if(answer =="? Thinking ..."){
+            return answer
+        }
 
         if (selectedQ < 21) {
             return answer
         } else if (selectedQ < 26) {
-            const values = Object.values(answer)
+            const values = Object.values(JSON.parse(answer))
             return (
                 <>
                     <p>{`${values[0]} ${values[1]} ${values[2]}`}</p>

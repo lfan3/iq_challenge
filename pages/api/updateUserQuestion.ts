@@ -25,7 +25,9 @@ export default async function updateQuestionsInUser(req, res) {
         qn = qa.length;
         if(!qa.includes(String(questionId))){
           const newQ = qa.join(',')
-            questions =`${newQ},${questionId}`
+          questions =`${newQ},${questionId}`
+        }else{
+          questions = user.questions
         }
       }else{
         questions = String(questionId)
@@ -38,14 +40,12 @@ export default async function updateQuestionsInUser(req, res) {
         }
       })
     //   answer all the question
-    console.log("qn",qn)
       if(qn >= 44){
         return res.status(200).json({ message: "Answer created", extra: "all", correct: questions });
       }
 
       return res.status(200).json({ message: "Answer created", extra: 'part',correct: questions });
     } catch (error) {
-      console.log("uuuu",error)
       res.status(500).json({ error: "Internal server error" });
     }
   } else {

@@ -26,5 +26,6 @@ export  interface IQuestionContentProps {
 export interface IQuestionProps {
     selectedQ: number;
     updateSelectedQ: (q:number)=>void;
+    correctionArr: string[];
     // children: (props:IQuestionContentProps)=>React.ReactNode
 }

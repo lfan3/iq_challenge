@@ -22,6 +22,19 @@ todo
 21 last question refill answer has some bugs, need to recheck answer all questions
 22 if token is expired need to logout the account  -- done
 23 if finished the questions, i should not continue to next question
+24 triangle handleEnter need to be optimized
+25 if the questions are already answered, then jump to the next unanswered quesitons
+26 getAnswerService 不应该返回回答，判断是否正确应该由服务器处理
+27 trac the answer from 26 to 30, save the grid game
+28 user and user.questions should not be coupling, saveAnswer
+29 grid update and refill answer is not completed  -- done
+30 save answer error and saved handling
+
+
+bug
+1 title nextjs --done
+2 input n'entre pas, 3 4eme question  --done
+3 show answer, lent
 
 
 learn：

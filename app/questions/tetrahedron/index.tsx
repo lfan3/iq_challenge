@@ -91,6 +91,8 @@ const TetraGame: React.FC<ITetraGame> = ({selectedQ, data, color, questionTxt, e
 
     useEffect(()=>{
         setInputValue("")
+        explosionTrigger(false)
+
         const refillAnswer = async()=>{
             const response = await getAnswerService(selectedQ)
             let {answer, success} = response;

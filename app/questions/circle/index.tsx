@@ -22,6 +22,7 @@ const Pie: React.FC<IQuestionContentProps> = ({ data, selectedQ, questionTxt, ex
 
     useEffect(()=>{
       setInputValue("")
+      explosionTrigger(false)
       const refillAnswer = async()=>{
         const response = await getAnswerService(selectedQ)
         let {answer, success} = response;
@@ -46,7 +47,7 @@ const Pie: React.FC<IQuestionContentProps> = ({ data, selectedQ, questionTxt, ex
           let { value } = event.target
     
           if(isAlphbet(value)){
-            value = value.toLocaleLowerCase()
+            value = value.toUpperCase()
           }
         //   let result=getAnswerService(selectedQ)
           const response = await getAnswerService(+selectedQ)
@@ -69,7 +70,7 @@ const Pie: React.FC<IQuestionContentProps> = ({ data, selectedQ, questionTxt, ex
                 const timer = setTimeout(()=>{
                   setIsWrong(false)
                   clearTimeout(timer)
-                }, 2500)
+                }, 800)
               }
           }
  

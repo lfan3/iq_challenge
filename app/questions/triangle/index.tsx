@@ -6,6 +6,7 @@ import {ITriangleData, IQuestionContentProps} from "../declaration"
 import { useData } from '@/app/context/DataStateContext';
 import {Info} from "@/app/components/Info";
 import { isAlphbet } from '@/app/utils/helper';
+import { useGlobalKeyPress } from '@/app/utils/hooks';
 
 // todo: 连续两次输入会有问题
 // todo: 玻璃碎片
@@ -19,6 +20,8 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
 
   useEffect(()=>{
     setInputValue("")
+    explosionTrigger(false)
+
     const refillAnswer = async()=>{
       const response = await getAnswerService(selectedQ)
       let {answer, success} = response;
@@ -38,7 +41,7 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
     setInputValue(e.target.value)
   }
 
-  const handleEnter = async (event: React.KeyboardEvent<HTMLInputElement>, selectedQ:number) => {
+  const handleEnterPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key == "Enter") {
       let { value } = event.target
 
@@ -55,7 +58,6 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
       } else {
         if (value == answer) {
           explosionTrigger(true)
-          // await storeAnswerService({{userId:string, questionId:selectedQ, answer:value}})
           updateUserQuestion(selectedQ)
   
           const timer = setTimeout(()=>{
@@ -71,9 +73,9 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
           }, 2500)
         }
       }
-
     }
   }
+  useGlobalKeyPress("Enter", handleEnterPress)
 
   const { first, second, third } = data
 
@@ -92,9 +94,8 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
                 <input
                   className='absolute text-black text-center top-1/2 left-[210px] w-12 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                   placeholder={String(first[1])}
-                  onKeyDown={(e)=>handleEnter(e, selectedQ)}
                   value={inputValue}
-
+                  onChange={handleChange}
                 />)
               : <div className='absolute text-black text-center top-1/2 w-[88px] left-[190px]'>{first[1]}</div>
           }
@@ -104,8 +105,8 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
                 <input
                   className='absolute text-black text-center -bottom-8 left-[146px] w-12 border rounded py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                   placeholder={String(first[2])}
-                  onKeyDown={(e)=>handleEnter(e, selectedQ)}
                   value={inputValue}
+                  onChange={handleChange}
 
                 />)
               : <div className='absolute text-white -bottom-6 left-[158px]'>{first[2]}</div>
@@ -120,8 +121,8 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
                 <input
                   className='absolute text-black text-center -top-8  left-[120px] w-12 border rounded py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                   placeholder={String(second[0])}
-                  onKeyDown={(e)=>handleEnter(e, selectedQ)}
                   value={inputValue}
+                  onChange={handleChange}
 
                 />)
               : <div className='absolute text-white -top-6  left-[142px]'>{second[0]}</div>
@@ -140,7 +141,6 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
                   <input
                     className='absolute text-black text-center top-1/2 right-[118px] w-12 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     placeholder={String(third[1])}
-                    onKeyDown={(e)=>handleEnter(e, selectedQ)}
                     value={inputValue}
                     onChange={handleChange}
                   />
@@ -157,7 +157,6 @@ export default function Triangle({ data, selectedQ, questionTxt, color, explosio
       😭
       </div>
       <Info message="something is wrong, try again" showInfo={showInfo} setShowInfo={setShowInfo}/>
-
     </div>
   );
 }

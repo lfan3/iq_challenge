@@ -1,5 +1,5 @@
-const regex = RegExp("[a-z]")
-const m = regex.test('a')
-const c = regex.test('?')
-const d = /[a-z]/.test('dd')
-console.log(m,c,d)
+const m = [1,3]
+const c = "[1,3]"
+const n = JSON.parse(c)
+console.log(n)
+console.log(new Set(m))
