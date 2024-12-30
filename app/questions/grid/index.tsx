@@ -96,7 +96,9 @@ const GridGame: React.FC<IQuestionContentProps> = (gridProps) => {
     const drawGrid = async () => {
       try {
         const {answer, success} = await getGridAnswer(correctionArr.includes(String(selectedQ)))
-        refilledGame(answer);
+        if(answer){
+          refilledGame(answer);
+        }
       }catch(e){
         console.log("drawGrid is wrong ", e);
       }

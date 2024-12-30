@@ -26,7 +26,7 @@ export default async function VerifyAuthHandler(req, res) {
         res.status(500).json({ error: "Internal server error" });
       }
     }else{
-      res.status(500)
+      res.status(203).json({ message: "203 Non-Authoritative Information" })
     }
 
   } else {

@@ -25,10 +25,12 @@ todo
 24 triangle handleEnter need to be optimized
 25 if the questions are already answered, then jump to the next unanswered quesitons
 26 getAnswerService 不应该返回回答，判断是否正确应该由服务器处理
-27 trac the answer from 26 to 30, save the grid game
+27 trac the answer from 26 to 30, save the grid game  - done
 28 user and user.questions should not be coupling, saveAnswer
 29 grid update and refill answer is not completed  -- done
 30 save answer error and saved handling
+31 add some click effect to button --done
+32 verifyauth and updateanswer do not need to be called if no userid --done
 
 
 bug

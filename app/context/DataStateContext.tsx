@@ -25,6 +25,7 @@ interface QState {
   updateFinish: (b: boolean) => void;
   finish: boolean;
   correct: string;
+  userId: string;
 }
 
 const DataStateContext = createContext<QState>({
@@ -46,6 +47,7 @@ const DataStateContext = createContext<QState>({
   updateFinish: (b) => {},
   finish: false,
   correct: "",
+  userId: ""
 });
 
 export const DataStateProvider = ({ children }) => {
@@ -127,7 +129,12 @@ export const DataStateProvider = ({ children }) => {
     if (isCompleted) {
         return getGridFulleAnswer()
     } else {
+      // if user login, we need to search. if no userId, we do not need to search
+      if(user.userId){
         return getGridParticalAnswer()
+      }else{
+        return {answer:null, success:true}
+      }
     }
   };
 
@@ -146,6 +153,7 @@ export const DataStateProvider = ({ children }) => {
         content,
         gridSelectedCellId,
         updateGridSelectedCellId,
+        userId:user.userId,
       }}
     >
       {children}

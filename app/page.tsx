@@ -1,14 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Question from "./questions";
 import { useData } from "./context/DataStateContext";
 import QButton from "./components/QButton";
 import AnswerButton from "./components/AnswerButton";
 import { Info } from "./components/Info";
 
+
 export default function Home() {
   // const [selectedQ, setSelectedQ] = useState<number>(1);
-  const { selectedQ, updateSelectedQ, correct,saveAnswer } = useData();
+  const { selectedQ, updateSelectedQ, correct,saveAnswer, userId } = useData();
   const arr = Array.from({ length: 45 }, (_, index) => index + 1);
   const [showInfo, setShowInfo] = useState(false);
 
@@ -32,6 +33,7 @@ export default function Home() {
   };
 
   const correctedArr = correct?.split(",").map((n) => n.trim()) || [];
+  
   return (
     <div>
       <div className="flex justify-center  p-8 font-[family-name:var(--font-geist-sans)]">
@@ -58,9 +60,9 @@ export default function Home() {
           </div>
           <div className="w-full flex justify-between">
             <AnswerButton selectedQ={selectedQ} />
-            {selectedQ > 20 && selectedQ < 31 && (
+            {userId && selectedQ > 20 && selectedQ < 31 && (
               <button
-                className={`mx-2 mt-4 font-bold shadow text-center border border-dashed  border-slate-400 px-2 py-2 rounded hover:shadow-2xl`}
+                className={`mx-2 mt-4 font-bold shadow text-center border border-dashed  border-slate-400 px-2 py-2 rounded hover:shadow-2xl active:shadow-none active:transform active:scale-95 focus:shadow`}
                 onClick={onSaveButtonClick}
               >
                 SAVE ANSWER

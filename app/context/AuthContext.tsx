@@ -16,16 +16,17 @@ export const AuthProvider = ({ children }) => {
   const [autherror, setautherror] = useState({message:""});
 
   useEffect(() => {
-
     const verify = async () => {
       const response = await verifyAuth();
       const { success, email, username, userId, questions } = response.data;
-      if (success) {
-        setuser({ username, email, userId, questions });
-        setautherror({message:""})
-      }else{
-        const {error} = response.data;
-        setautherror({message:error ? error :"Failed, Something is wrong, try again"})
+      if(userId){
+        if (success) {
+          setuser({ username, email, userId, questions });
+          setautherror({message:""})
+        }else{
+          const {error} = response.data;
+          setautherror({message:error ? error :"Failed, Something is wrong, try again"})
+        }
       }
     };
 

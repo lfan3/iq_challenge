@@ -19,7 +19,7 @@ const AnswerButton: React.FC<{ [key: string]: number }> = ({ selectedQ }) => {
   return (
     <div className="anserButton">
       <button
-        className={`mx-2 mt-4 font-bold shadow text-center border border-dashed  border-slate-400 px-2 py-2 rounded hover:shadow-2xl`}
+        className={`mx-2 mt-4 font-bold shadow text-center border border-dashed  border-slate-400 px-2 py-2 rounded hover:shadow-2xl active:shadow-none active:transform active:scale-95 focus:shadow`}
         onClick={(e) => onAnswerButtonClick()}
       >
         SHOW ANSWER
